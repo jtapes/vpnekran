@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jtapes.github.io/vpnekran/sitemap.xml
