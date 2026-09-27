@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+
+<title>Чужой клиент на Android TV: почему naive-конфиг не встанет | ВПН Экран</title>
+<meta name="description" content="На телевизоре уже стоит другой ВПН-клиент, а подписка в него не импортируется. Разбираем форматы конфигов (vless, ss, WireGuard, naive), подписки по ссылке и особенности Android TV: лаунчер, один активный туннель.">
+<meta name="keywords" content="как установить амнезия впн на андроид тв, сторонний впн клиент android tv, конфиг не импортируется на телевизоре, впн клиент для андроид тв, naive android tv, подписка не добавляется в клиент">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://jtapes.github.io/vpnekran/storonniy-klient-na-android-tv.html">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ВПН Экран">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Сторонний ВПН-клиент на Android TV: почему наш naive-конфиг в нём не встанет">
+<meta property="og:description" content="Форматы конфигов, две ссылки подписки (Karing и INCY) и особенности телевизора.">
+<meta property="og:url" content="https://jtapes.github.io/vpnekran/storonniy-klient-na-android-tv.html">
+<meta name="twitter:card" content="summary">
+
+<meta name="theme-color" content="#16100d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232b211b'/%3E%3Crect x='6' y='8' width='20' height='12.5' rx='2' fill='none' stroke='%23f3b664' stroke-width='2'/%3E%3Cpath d='M12 25h8' stroke='%23f3b664' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='14.2' r='2.2' fill='%23ffdcaa'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<!-- Без скриптов блоки не получат класс .tuned — показываем их сразу: страница
+     обязана читаться и с выключенным JS, и поисковым роботом. -->
+<noscript><style>.tune{opacity:1;transform:none}</style></noscript>
+<!-- Yandex.Metrika counter -->
+<script>
+  (function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+  })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113078338', 'ym');
+  ym(113078338, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="siberian.uk"]');
+    if (a) ym(113078338, 'reachGoal', 'go_siberian');
+  });
+</script>
+<!-- /Yandex.Metrika counter -->
+</head>
+
+<body>
+<noscript><div><img src="https://mc.yandex.ru/watch/113078338" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+
+<header class="porch">
+  <div class="hold porch-in">
+    <a class="ekr" href="index.html">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2b211b"/><rect x="6" y="8" width="20" height="12.5" rx="2" stroke="#f3b664" stroke-width="2"/><path d="M12 25h8" stroke="#f3b664" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="14.2" r="2.2" fill="#ffdcaa"/></svg>
+      <span class="ekr-a">ВПН</span>
+      <span class="ekr-b">Экран</span>
+    </a>
+    <nav class="dial" aria-label="Разделы">
+      <a href="android-tv.html">Android TV</a>
+      <a href="yandex-tv.html">Яндекс ТВ</a>
+      <a href="mac.html">Mac</a>
+      <a href="mobilnyy-internet.html">Мобильный интернет</a>
+      <a href="goroda.html">Города</a>
+    </nav>
+    <a class="knob knob-lit knob-sm" href="https://siberian.uk/auth?utm_source=vpnekran&amp;utm_medium=landing&amp;utm_campaign=storonniy-klient-na-android-tv&amp;utm_content=nav" rel="noopener">Подключить</a>
+  </div>
+</header>
+
+<main>
+
+<div class="hold">
+  <nav class="bread" aria-label="Навигация">
+    <a href="index.html">Главная</a><i>/</i><a href="stati.html">Статьи</a><i>/</i><span>Сторонний клиент на Android TV</span>
+  </nav>
+</div>
+
+<section class="story-top">
+  <div class="hold">
+    <span class="label">Android TV · форматы конфигов</span>
+    <h1>Сторонний ВПН-клиент на Android TV: <span>почему наш naive-конфиг в нём не встанет</span></h1>
+    <p class="story-lede">На телевизоре часто уже стоит какой-нибудь клиент. Его поставил мастер, продавец приставки или вы сами под старый ключ. Хочется добавить подписку туда же и не возиться с установкой, но импорт не проходит. Дело здесь в формате конфига, и телевизор тут ни при чём. Официально у нас два клиента: основной Karing и запасной INCY, и ссылка подписки у каждого своя.</p>
+    <p class="story-date">Опубликовано 27 сентября 2026</p>
+  </div>
+</section>
+
+<div class="hold">
+  <article class="story">
+<h2>Из чего состоит конфиг</h2>
+    <p>Любой конфиг сообщает клиенту три вещи: где сервер, как представиться и на каком протоколе
+    разговаривать. Протокол стоит в самом начале строки, до двоеточия. По этой приставке клиент
+    решает, умеет ли он с таким работать. Встретил незнакомую, и дальше строку не читает: выдаёт
+    ошибку формата или молча ничего не добавляет.</p>
+    <div class="sheet">
+      <table>
+        <thead><tr><th>Начало строки или файла</th><th>Что это</th><th>Кто открывает</th></tr></thead>
+        <tbody>
+          <tr><td><code>vless://</code>, <code>vmess://</code>, <code>trojan://</code></td><td>Протоколы семейства Xray</td><td>Клиенты на ядре Xray и многие на sing-box; у нас это INCY со своей ссылкой</td></tr>
+          <tr><td><code>ss://</code></td><td>Shadowsocks</td><td>Большинство клиентов</td></tr>
+          <tr><td>Файл <code>.conf</code> с разделами <code>[Interface]</code> и <code>[Peer]</code></td><td>WireGuard и его производные</td><td>Клиенты этого семейства</td></tr>
+          <tr><td><code>https://</code></td><td>Подписка: список серверов, который клиент скачивает</td><td>Любой клиент, если внутри знакомые ему форматы</td></tr>
+          <tr><td><code>naive+https://</code></td><td>NaiveProxy</td><td>Клиенты с сетевым стеком Chromium; у нас это Karing</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Основная ссылка подписки отдаёт список строк вида <code>naive+https://</code>. Клиент, который
+    naive не знает, скачивает список, пропускает все строки и показывает ноль серверов. Со стороны
+    выглядит так, будто подписка пустая или ссылка набрана с ошибкой, хотя ссылка в порядке.</p>
+    <p>Для запасного клиента INCY в кабинете есть вторая ссылка и кнопка «Добавить в INCY». За ней
+    отдельные серверы на VLESS, доплачивать за них не нужно. В Happ, v2rayTun и Hiddify подписку
+    мы не проверяли и работу там не обещаем.</p>
+
+    <h2>Ссылка подписки и строка конфига ведут себя по-разному</h2>
+    <p>Строка конфига описывает один сервер и не меняется. Если сервер переехал или его заменили,
+    строка перестаёт работать, и её нужно добывать и вводить заново. Ссылка подписки устроена
+    иначе: это адрес, по которому клиент сам забирает актуальный список серверов. Наш сервер
+    подсказывает клиенту обновлять его раз в сутки, поэтому на телевизоре ссылку набирают один
+    раз, а дальше список меняется без вашего участия.</p>
+    <p>Отсюда же ответ на частый вопрос, нельзя ли «перевести» конфиг в формат, который понимает
+    уже установленный клиент. Конвертеры в интернете переписывают запись одного и того же протокола
+    из одного вида в другой. Сменить протокол они не могут: сервер для Karing разговаривает на naive, и та же запись,
+    переписанная в <code>vless://</code>, к нему не подключится. Серверы на VLESS у нас отдельные,
+    и ссылка на них выдаётся под INCY.</p>
+
+    <h2>Почему naive понимает не каждый клиент</h2>
+    <p>Смысл протокола naive в том, чтобы соединение выглядело как обычный заход браузера Chrome на сайт
+    по HTTPS. Подделать это снаружи трудно, поэтому клиент тащит в себе настоящий сетевой стек
+    Chromium, библиотеку Cronet. В ядре sing-box поддержка naive есть, но работает она только
+    в сборках, где этот стек подключён. В Karing он есть, в ядре Xray naive нет вовсе. Поэтому основную
+    ссылку подписки мы выдаём под Karing.</p>
+    <p>На телевизоре мы проверяли именно Karing. INCY на Android TV не проверяли и работу там
+    не обещаем, так что для телевизора основной вариант один.</p>
+
+    <h2>Что на телевизоре мешает даже правильному клиенту</h2>
+    <h3>Нет общего буфера обмена</h3>
+    <p>На телефоне конфиг копируют и вставляют. У телевизора с телефоном общего буфера нет, камеры
+    для QR-кода обычно тоже. Некоторые клиенты умеют принимать конфиг с телефона через локальную
+    страницу, но полагаться на это не стоит. Поэтому у нас ссылка подписки короткая и набирается
+    с пульта, как показано <a href="android-tv.html#pult">на странице про Android TV</a>.</p>
+    <h3>Приложение есть, а на главном экране его не видно</h3>
+    <p>Android TV показывает в своём лаунчере только приложения, которые объявили поддержку
+    телевизора. Телефонная программа, поставленная файлом, может установиться и при этом не
+    появиться среди значков. Найти её можно в «Настройки» → «Приложения». Если же клиент
+    открылся, а по меню не пройти стрелками, значит, интерфейс рассчитан на палец.</p>
+    <h3>Туннель в системе один</h3>
+    <p>Android держит только один активный туннель. Когда включается второе приложение,
+    система отключает первое. Если в старом клиенте включён автозапуск или постоянное подключение,
+    он может перехватывать туннель после каждой перезагрузки телевизора, и Karing будет
+    отваливаться «сам по себе».</p>
+
+    <h2>Что делать со старым клиентом</h2>
+    <p>Удалять его не обязательно, особенно если там подписка другого сервиса, которой вы ещё
+    пользуетесь. Достаточно выключить в нём автоподключение и следить, чтобы работал один туннель.
+    Если клиент больше не нужен, удалите его через «Настройки» → «Приложения»: так меньше шансов,
+    что он включится после обновления системы.</p>
+    <p>Karing ставится рядом установочным файлом из кабинета. Файл тот же, что для телефона
+    на Андроиде, отдельной сборки для телевизора нет. Если телевизор работает не на чистом
+    Android TV, а на оболочке вроде Яндекс ТВ, сначала пройдите
+    <a href="yandex-tv.html#proverka">проверку в четыре шага</a>.</p>
+
+    <h2>Как понять, что подписка попала не в тот клиент</h2>
+    <ul>
+      <li>Клиент пишет про неподдерживаемый формат или неизвестную схему сразу после ввода.</li>
+      <li>Подписка добавилась, но серверов в ней ноль, и обновление ничего не меняет.</li>
+      <li>Сервер виден в списке, но при подключении сразу выдаётся ошибка протокола.</li>
+    </ul>
+    <p>Во всех трёх случаях искать опечатку в ссылке бессмысленно. Откройте ту же ссылку в Karing:
+    если там серверы появились, значит, всё дело было в клиенте.</p>
+  </article>
+</div>
+
+<section class="scene tune" id="voprosy">
+  <div class="hold">
+    <div class="scene-cap">
+      <span class="label">Вопросы</span>
+      <h2>О чужих клиентах на телевизоре</h2>
+    </div>
+    <div class="qlist">
+      <details open>
+        <summary>Как установить Amnezia на Android TV и добавить туда вашу подписку?</summary>
+        <div class="qlist-a">Установить приложение другого сервиса на Android TV можно так же, как любое другое: из магазина приложений, если оно там есть, или установочным файлом по инструкции его разработчика. Нашу подписку мы выдаём под два клиента: основную ссылку для Karing на протоколе naive и запасную для INCY. В других приложениях мы её не проверяли. На телевизоре проверен Karing, он ставится рядом файлом из личного кабинета.</div>
+      </details>
+      <details>
+        <summary>Клиент принял ссылку, но серверов в подписке ноль. Почему?</summary>
+        <div class="qlist-a">Клиент скачал список, но не узнал в нём ни одной строки. Основная ссылка подписки состоит из строк naive+https, и приложения без поддержки naive их пропускают. Ссылка при этом правильная: откройте её в Karing, и серверы появятся.</div>
+      </details>
+      <details>
+        <summary>Можно ли держать на телевизоре два ВПН-клиента?</summary>
+        <div class="qlist-a">Установить можно, работать одновременно нельзя: Android держит один активный туннель, и включение второго приложения отключает первое. Выключите в старом клиенте автоподключение, иначе после перезагрузки телевизора он может перехватить туннель у Karing.</div>
+      </details>
+      <details>
+        <summary>А INCY на телевизоре подойдёт?</summary>
+        <div class="qlist-a">На Android TV мы INCY не проверяли и работу там не обещаем. Для телевизора основной клиент Karing. INCY у нас запасной: для него в кабинете отдельная ссылка на серверы VLESS и кнопка «Добавить в INCY», доплачивать за него не нужно.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="scene tune">
+  <div class="hold">
+    <div class="scene-cap">
+      <span class="label">Ещё статьи</span>
+      <h2>Что ещё почитать про экраны и подписку</h2>
+    </div>
+    <ul class="spine">
+      <li><a href="pochemu-vpn-ne-rabotaet-v-mobilnoy-seti.html">ВПН работает на Wi-Fi, а на мобильном интернете нет</a></li>
+      <li><a href="pristavka-dlya-vpn-samsung-lg.html">Телевизор Samsung или LG: какую приставку взять под ВПН</a></li>
+      <li><a href="neizvestnyy-razrabotchik-mac-vpn.html">«Неизвестный разработчик» при установке ВПН на Mac</a></li>
+      <li><a href="yandex-tv-ili-android-tv.html">Яндекс ТВ или Android TV: в чём разница для ВПН</a></li>
+    </ul>
+    <p class="spine-all"><a href="stati.html">Все статьи на одной странице →</a></p>
+  </div>
+</section>
+
+<section class="scene tune">
+  <div class="hold">
+    <div class="finale">
+      <span class="label">Один клиент</span>
+      <h2>Поставьте Karing рядом со старым клиентом и сравните</h2>
+      <p class="gist">Три дня без оплаты и без карты. Файл для телевизора и короткая ссылка лежат в личном кабинете.</p>
+      <a class="knob knob-lit knob-xl" href="https://siberian.uk/auth?utm_source=vpnekran&amp;utm_medium=landing&amp;utm_campaign=storonniy-klient-na-android-tv&amp;utm_content=footer-cta" rel="noopener">Получить доступ на 3 дня</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="closing">
+  <div class="hold">
+    <nav class="closing-nav" aria-label="Разделы сайта">
+      <a href="index.html">Главная</a>
+      <a href="android-tv.html">Android TV</a>
+      <a href="yandex-tv.html">Яндекс ТВ</a>
+      <a href="mac.html">Mac</a>
+      <a href="mobilnyy-internet.html">Мобильный интернет</a>
+      <a href="goroda.html">Города</a>
+      <a href="stati.html">Статьи</a>
+    </nav>
+    <div class="closing-in">
+      <div>
+        <p><strong>ВПН Экран</strong> рассказывает о подключении телевизоров, приставок и компьютеров к сервису Siberian VPN.</p>
+        <p><a href="https://siberian.uk/auth?utm_source=vpnekran&amp;utm_medium=landing&amp;utm_campaign=storonniy-klient-na-android-tv&amp;utm_content=footer-link" rel="noopener">Личный кабинет и оплата</a></p>
+      </div>
+      <p class="closing-fine">
+        Karing выпускает сторонняя команда, мы с ней не связаны. Samsung, LG, Яндекс ТВ,
+        Android TV, Google TV, macOS, Happ, v2rayTun, INCY, Hiddify и другие названия
+        принадлежат их владельцам и упомянуты для справки. Сведения о чужих приложениях,
+        телевизорах и приставках — по открытым источникам на сентябрь 2026 года, могли
+        измениться. Сервис предназначен для защиты личных данных и доступа к легальным
+        ресурсам. Цены указаны на 2026 год.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/app.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://jtapes.github.io/vpnekran/storonniy-klient-na-android-tv.html#article",
+      "headline": "Сторонний ВПН-клиент на Android TV: почему наш naive-конфиг в нём не встанет",
+      "description": "На телевизоре уже стоит другой ВПН-клиент, а подписка в него не импортируется. Разбираем форматы конфигов (vless, ss, WireGuard, naive), подписки по ссылке и особенности Android TV: лаунчер, один активный туннель.",
+      "inLanguage": "ru-RU",
+      "datePublished": "2026-09-27",
+      "dateModified": "2026-09-27",
+      "author": {
+        "@type": "Organization",
+        "name": "ВПН Экран",
+        "url": "https://jtapes.github.io/vpnekran/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "ВПН Экран",
+        "url": "https://jtapes.github.io/vpnekran/"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://jtapes.github.io/vpnekran/storonniy-klient-na-android-tv.html"
+      },
+      "isPartOf": {
+        "@id": "https://jtapes.github.io/vpnekran/#website"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://jtapes.github.io/vpnekran/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Статьи",
+          "item": "https://jtapes.github.io/vpnekran/stati.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Сторонний клиент на Android TV",
+          "item": "https://jtapes.github.io/vpnekran/storonniy-klient-na-android-tv.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://jtapes.github.io/vpnekran/storonniy-klient-na-android-tv.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Как установить Amnezia на Android TV и добавить туда вашу подписку?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Установить приложение другого сервиса на Android TV можно так же, как любое другое: из магазина приложений, если оно там есть, или установочным файлом по инструкции его разработчика. Нашу подписку мы выдаём под два клиента: основную ссылку для Karing на протоколе naive и запасную для INCY. В других приложениях мы её не проверяли. На телевизоре проверен Karing, он ставится рядом файлом из личного кабинета."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Клиент принял ссылку, но серверов в подписке ноль. Почему?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Клиент скачал список, но не узнал в нём ни одной строки. Основная ссылка подписки состоит из строк naive+https, и приложения без поддержки naive их пропускают. Ссылка при этом правильная: откройте её в Karing, и серверы появятся."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно ли держать на телевизоре два ВПН-клиента?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Установить можно, работать одновременно нельзя: Android держит один активный туннель, и включение второго приложения отключает первое. Выключите в старом клиенте автоподключение, иначе после перезагрузки телевизора он может перехватить туннель у Karing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "А INCY на телевизоре подойдёт?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "На Android TV мы INCY не проверяли и работу там не обещаем. Для телевизора основной клиент Karing. INCY у нас запасной: для него в кабинете отдельная ссылка на серверы VLESS и кнопка «Добавить в INCY», доплачивать за него не нужно."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>

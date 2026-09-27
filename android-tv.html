@@ -86,7 +86,7 @@
       </p>
 
       <div class="memo memo-clay">
-        <p>Работает только в Karing: в v2rayTun, Happ, INCY и Hiddify подписку не добавить.
+        <p>На телевизоре мы обещаем только Karing: Happ, v2rayTun и Hiddify наш основной протокол не понимают, а запасной клиент INCY на Android TV мы не проверяли.
         Samsung на Tizen и LG на webOS — не Андроид, туда Karing не встанет,
         <a href="#samsung-lg">что делать с ними</a>.</p>
       </div>
@@ -247,6 +247,19 @@
   </div>
 </section>
 
+<section class="scene tune" id="po-teme">
+  <div class="hold">
+    <div class="scene-cap">
+      <span class="label">Читайте по теме</span>
+      <h2>Если на телевизоре уже есть другой клиент или нужна приставка</h2>
+    </div>
+    <div class="nook">
+      <a href="storonniy-klient-na-android-tv.html"><b>Сторонний клиент на Android TV: почему наш naive-конфиг в нём не встанет</b><span>Форматы конфигов, подписка по ссылке и один активный туннель на телевизоре.</span></a>
+      <a href="pristavka-dlya-vpn-samsung-lg.html"><b>Телевизор Samsung или LG: какую приставку взять под ВПН</b><span>Система, Google Play, память, пульт и HDMI-CEC, сеть и питание.</span></a>
+    </div>
+  </div>
+</section>
+
 <section class="scene tune" id="voprosy">
   <div class="hold">
     <div class="scene-cap">
@@ -272,7 +285,7 @@
       </details>
       <details>
         <summary>Подписка встанет в v2rayTun или Happ на телевизоре?</summary>
-        <div class="qlist-a">Нет. Эти клиенты работают с ключами VLESS, VMess, Trojan и Shadowsocks, а наш протокол требует сетевого стека Chromium, который встроен в Karing. Если на телевизоре уже стоит другой клиент, он может остаться, но включён должен быть только один туннель.</div>
+        <div class="qlist-a">Основная ссылка нет: наш основной протокол требует сетевого стека Chromium, который встроен в Karing, а эти клиенты его не понимают. Вторая ссылка на серверы VLESS выдаётся под запасной клиент INCY; в Happ и v2rayTun подписку мы не проверяли и работу там не обещаем. Если на телевизоре уже стоит другой клиент, он может остаться, но включён должен быть только один туннель.</div>
       </details>
       <details>
         <summary>Через туннель пойдут все приложения телевизора?</summary>
@@ -312,6 +325,7 @@
       <a href="mac.html">Mac</a>
       <a href="mobilnyy-internet.html">Мобильный интернет</a>
       <a href="goroda.html">Города</a>
+      <a href="stati.html">Статьи</a>
     </nav>
     <div class="closing-in">
       <div>
@@ -387,7 +401,7 @@
           "name": "Подписка встанет в v2rayTun или Happ на телевизоре?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Нет. Эти клиенты работают с ключами VLESS, VMess, Trojan и Shadowsocks, а наш протокол требует сетевого стека Chromium, который встроен в Karing. Если на телевизоре уже стоит другой клиент, он может остаться, но включён должен быть только один туннель."
+            "text": "Основная ссылка нет: наш основной протокол требует сетевого стека Chromium, который встроен в Karing, а эти клиенты его не понимают. Вторая ссылка на серверы VLESS выдаётся под запасной клиент INCY; в Happ и v2rayTun подписку мы не проверяли и работу там не обещаем. Если на телевизоре уже стоит другой клиент, он может остаться, но включён должен быть только один туннель."
           }
         },
         {

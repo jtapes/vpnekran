@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+
+<title>«Неизвестный разработчик» при установке ВПН на Mac | ВПН Экран</title>
+<meta name="description" content="macOS не открывает ВПН-клиент и пишет про неустановленного разработчика. Что такое Gatekeeper, как открыть приложение в Sequoia и новее через «Всё равно открыть», чем опасен совет отключить проверку.">
+<meta name="keywords" content="неизвестный разработчик mac впн, не удается открыть приложение от неустановленного разработчика, всё равно открыть mac, gatekeeper sequoia, впн для mac не открывается, karing mac неизвестный разработчик">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://jtapes.github.io/vpnekran/neizvestnyy-razrabotchik-mac-vpn.html">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ВПН Экран">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="«Неизвестный разработчик» при установке ВПН на Mac: что это и как быть">
+<meta property="og:description" content="Gatekeeper, кнопка «Всё равно открыть» в Sequoia и новее и разрешения, которые ВПН-клиент попросит после.">
+<meta property="og:url" content="https://jtapes.github.io/vpnekran/neizvestnyy-razrabotchik-mac-vpn.html">
+<meta name="twitter:card" content="summary">
+
+<meta name="theme-color" content="#16100d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232b211b'/%3E%3Crect x='6' y='8' width='20' height='12.5' rx='2' fill='none' stroke='%23f3b664' stroke-width='2'/%3E%3Cpath d='M12 25h8' stroke='%23f3b664' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='14.2' r='2.2' fill='%23ffdcaa'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<!-- Без скриптов блоки не получат класс .tuned — показываем их сразу: страница
+     обязана читаться и с выключенным JS, и поисковым роботом. -->
+<noscript><style>.tune{opacity:1;transform:none}</style></noscript>
+<!-- Yandex.Metrika counter -->
+<script>
+  (function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+  })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113078338', 'ym');
+  ym(113078338, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="siberian.uk"]');
+    if (a) ym(113078338, 'reachGoal', 'go_siberian');
+  });
+</script>
+<!-- /Yandex.Metrika counter -->
+</head>
+
+<body>
+<noscript><div><img src="https://mc.yandex.ru/watch/113078338" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+
+<header class="porch">
+  <div class="hold porch-in">
+    <a class="ekr" href="index.html">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2b211b"/><rect x="6" y="8" width="20" height="12.5" rx="2" stroke="#f3b664" stroke-width="2"/><path d="M12 25h8" stroke="#f3b664" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="14.2" r="2.2" fill="#ffdcaa"/></svg>
+      <span class="ekr-a">ВПН</span>
+      <span class="ekr-b">Экран</span>
+    </a>
+    <nav class="dial" aria-label="Разделы">
+      <a href="android-tv.html">Android TV</a>
+      <a href="yandex-tv.html">Яндекс ТВ</a>
+      <a href="mac.html">Mac</a>
+      <a href="mobilnyy-internet.html">Мобильный интернет</a>
+      <a href="goroda.html">Города</a>
+    </nav>
+    <a class="knob knob-lit knob-sm" href="https://siberian.uk/auth?utm_source=vpnekran&amp;utm_medium=landing&amp;utm_campaign=neizvestnyy-razrabotchik-mac-vpn&amp;utm_content=nav" rel="noopener">Подключить</a>
+  </div>
+</header>
+
+<main>
+
+<div class="hold">
+  <nav class="bread" aria-label="Навигация">
+    <a href="index.html">Главная</a><i>/</i><a href="stati.html">Статьи</a><i>/</i><span>Неизвестный разработчик на Mac</span>
+  </nav>
+</div>
+
+<section class="story-top">
+  <div class="hold">
+    <span class="label">macOS · Gatekeeper</span>
+    <h1>«Неизвестный разработчик» при установке ВПН на Mac: <span>что это и как быть</span></h1>
+    <p class="story-lede">Скачали клиент, перетащили в «Программы», дважды щёлкнули, а macOS отвечает, что открыть приложение не удаётся, и предлагает переместить его в Корзину. Это срабатывает Gatekeeper, встроенная проверка приложений. Разберём, что он проверяет, как открыть программу в Sequoia и новее и чего делать не стоит.</p>
+    <p class="story-date">Опубликовано 27 сентября 2026</p>
+  </div>
+</section>
+
+<div class="hold">
+  <article class="story">
+<h2>Что проверяет Gatekeeper</h2>
+    <p>Всё, что скачано из интернета, macOS помечает как пришедшее извне. При первом запуске такого
+    приложения система смотрит на две вещи: подписано ли оно сертификатом разработчика и прошло ли
+    нотаризацию, то есть автоматическую проверку Apple на вредоносный код. Нотаризованное
+    приложение открывается сразу, без вопросов. Если нотаризации нет, появляется окно
+    с формулировкой вроде «Не удаётся открыть…, так как приложение от неустановленного
+    разработчика» или «Apple не удалось проверить…». В самом окне только «Готово» и «Переместить
+    в Корзину».</p>
+    <p>Предупреждение значит одно: Apple эту сборку не проверяла. Многие программы с открытым
+    кодом распространяются именно так: разработчики выкладывают образ диска на свою страницу
+    релизов, а нотаризация требует платной учётной записи разработчика Apple, и её проходят не все.
+    Насколько ей можно доверять, зависит от того, откуда взят файл.</p>
+
+    <h2>Откуда брать клиент</h2>
+    <p>Клиент туннеля получает доступ ко всему сетевому трафику компьютера. Если файл пришёл из
+    сборника «скачать бесплатно», из чата или с сайта, который вы видите впервые, окно
+    Gatekeeper лучше принять всерьёз и нажать «Переместить в Корзину».</p>
+    <p>Karing для Mac мы даём кнопкой «macOS» в личном кабинете: это ссылка на официальный образ
+    диска разработчиков, универсальная сборка для Intel и для чипов Apple. Версию из App Store
+    ставить не нужно, она старая и к нашим серверам не подключается. Второй наш клиент, INCY,
+    для компьютера у разработчиков пока в pre-alpha, поэтому на Mac ставьте Karing. Подробнее об установке
+    и о том, как Mac делит подписку с телевизором, на странице <a href="mac.html">про Mac</a>.</p>
+
+    <h2>Как открыть приложение в macOS Sequoia и новее</h2>
+    <p>Раньше хватало щёлкнуть по значку с зажатой клавишей Control и выбрать «Открыть». В macOS
+    Sequoia этот обход убрали, путь остался один:</p>
+    <ol>
+      <li>Попробуйте открыть приложение обычным двойным щелчком и закройте окно с предупреждением
+      кнопкой «Готово».</li>
+      <li>Откройте меню Apple → «Системные настройки» → «Конфиденциальность и безопасность».</li>
+      <li>Прокрутите до раздела «Безопасность». Там появится строка о том, что приложение
+      заблокировано, и кнопка «Всё равно открыть».</li>
+      <li>Нажмите её, введите пароль администратора и подтвердите запуск ещё раз.</li>
+    </ol>
+    <p>По справке Apple кнопка видна примерно час после попытки открыть приложение. Если вы
+    зашли в настройки позже и строки там нет, повторите первый шаг. Разрешение действует для этой
+    копии программы, после него она открывается как обычно.</p>
+
+    <h2>«Приложение повреждено»: другая ошибка с тем же корнем</h2>
+    <p>Иногда вместо неизвестного разработчика macOS пишет, что приложение повреждено и его нужно
+    переместить в Корзину. Чаще всего сам файл цел: система не смогла проверить подпись, например
+    потому, что образ был скачан не полностью или распакован сторонним архиватором. Первое, что
+    стоит сделать, это удалить копию и скачать образ заново из того же источника.</p>
+    <p>В интернете на этот случай советуют команды для Терминала, которые снимают отметку
+    о скачивании. Это обход проверки без выяснения причин, и делать его с файлом неизвестного
+    происхождения мы бы не стали.</p>
+
+    <h2>Если Mac рабочий</h2>
+    <p>Компьютеры, которые выдаёт работодатель, часто управляются профилем организации. Настройки
+    безопасности на них может задавать администратор, и тогда кнопки «Всё равно открыть» не будет
+    или она не сработает. Обходить это не стоит, вопрос решается с тем, кто этим Mac управляет.
+    Там же уточните, не мешает ли рабочий туннель: на одном компьютере два включённых туннеля
+    обычно конфликтуют.</p>
+
+    <h2>Почему не стоит отключать проверку целиком</h2>
+    <p>В разделе «Безопасность» есть выбор, откуда разрешено ставить приложения: только из App Store
+    или из App Store и от известных разработчиков. Третий вариант, без ограничений, давно спрятан,
+    и его возвращают командой в Терминале. В Sequoia даже после неё система требует отдельно
+    подтвердить отключение в «Системных настройках». Ради одного клиента так делать незачем:
+    «Всё равно открыть» решает задачу для конкретной программы и оставляет защиту для всего
+    остального.</p>
+
+    <h2>Какие окна появятся после запуска</h2>
+    <p>Открытие программы ещё не значит, что туннель поднимется. Клиенту нужно разрешение
+    добавить конфигурацию VPN: macOS спросит об этом при первом подключении и попросит пароль или
+    Touch ID. Если отказаться, соединения не будет, пока вы не подключитесь заново
+    и не согласитесь. Для Karing инструкция кабинета называет ещё «Локальную сеть» и «Полный доступ
+    к диску», весь список с ответами есть в <a href="mac.html#zaprosy">таблице на странице про Mac</a>.</p>
+    <p>Некоторые клиенты других сервисов вдобавок ставят системное расширение, и macOS блокирует
+    его, пока пользователь не разрешит. В Sequoia и новее такие сетевые расширения включают
+    в «Системных настройках» → «Основные», в разделе объектов входа и расширений. Если окно про
+    расширение появилось у клиента, которого вы не ставили, это повод насторожиться.</p>
+  </article>
+</div>
+
+<section class="scene tune" id="voprosy">
+  <div class="hold">
+    <div class="scene-cap">
+      <span class="label">Вопросы</span>
+      <h2>О запуске клиента на macOS</h2>
+    </div>
+    <div class="qlist">
+      <details open>
+        <summary>Кнопки «Всё равно открыть» в настройках нет. Что делать?</summary>
+        <div class="qlist-a">Она появляется только после попытки запустить приложение и видна примерно час. Откройте программу двойным щелчком ещё раз, закройте предупреждение кнопкой «Готово» и сразу зайдите в «Системные настройки» → «Конфиденциальность и безопасность», раздел «Безопасность».</div>
+      </details>
+      <details>
+        <summary>Работает ли в Sequoia старый способ через Control и «Открыть»?</summary>
+        <div class="qlist-a">Нет. Начиная с macOS Sequoia обход через контекстное меню убран, приложение без нотаризации открывают только через «Конфиденциальность и безопасность» и кнопку «Всё равно открыть» с вводом пароля администратора.</div>
+      </details>
+      <details>
+        <summary>Не безопаснее ли поставить Karing из App Store, чтобы не было предупреждения?</summary>
+        <div class="qlist-a">Для нашей подписки нет: в App Store для Mac лежит старая сборка Karing, она ставится и открывается, но к нашим серверам не подключается. Берите образ по кнопке «macOS» в личном кабинете, это официальный выпуск разработчиков.</div>
+      </details>
+      <details>
+        <summary>Разрешил запуск, приложение открылось, но туннель не поднимается. Почему?</summary>
+        <div class="qlist-a">Скорее всего, не выдано разрешение на конфигурацию VPN: если в том окне отказаться, соединения не будет. Нажмите подключение ещё раз и разрешите. Для Karing проверьте также «Локальную сеть» и «Полный доступ к диску» в разделе «Конфиденциальность и безопасность».</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="scene tune">
+  <div class="hold">
+    <div class="scene-cap">
+      <span class="label">Ещё статьи</span>
+      <h2>Что ещё почитать про экраны и подписку</h2>
+    </div>
+    <ul class="spine">
+      <li><a href="pochemu-vpn-ne-rabotaet-v-mobilnoy-seti.html">ВПН работает на Wi-Fi, а на мобильном интернете нет</a></li>
+      <li><a href="pristavka-dlya-vpn-samsung-lg.html">Телевизор Samsung или LG: какую приставку взять под ВПН</a></li>
+      <li><a href="storonniy-klient-na-android-tv.html">Сторонний ВПН-клиент на Android TV: почему наш naive-конфиг в нём не встанет</a></li>
+      <li><a href="yandex-tv-ili-android-tv.html">Яндекс ТВ или Android TV: в чём разница для ВПН</a></li>
+    </ul>
+    <p class="spine-all"><a href="stati.html">Все статьи на одной странице →</a></p>
+  </div>
+</section>
+
+<section class="scene tune">
+  <div class="hold">
+    <div class="finale">
+      <span class="label">Mac</span>
+      <h2>Поставьте Karing на Mac за три бесплатных дня</h2>
+      <p class="gist">Образ для macOS лежит в кабинете, подписка общая с телефоном и телевизором. Потом 89&nbsp;₽ в месяц без автопродления.</p>
+      <a class="knob knob-lit knob-xl" href="https://siberian.uk/auth?utm_source=vpnekran&amp;utm_medium=landing&amp;utm_campaign=neizvestnyy-razrabotchik-mac-vpn&amp;utm_content=footer-cta" rel="noopener">Взять 3 дня на Mac</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="closing">
+  <div class="hold">
+    <nav class="closing-nav" aria-label="Разделы сайта">
+      <a href="index.html">Главная</a>
+      <a href="android-tv.html">Android TV</a>
+      <a href="yandex-tv.html">Яндекс ТВ</a>
+      <a href="mac.html">Mac</a>
+      <a href="mobilnyy-internet.html">Мобильный интернет</a>
+      <a href="goroda.html">Города</a>
+      <a href="stati.html">Статьи</a>
+    </nav>
+    <div class="closing-in">
+      <div>
+        <p><strong>ВПН Экран</strong> рассказывает о подключении телевизоров, приставок и компьютеров к сервису Siberian VPN.</p>
+        <p><a href="https://siberian.uk/auth?utm_source=vpnekran&amp;utm_medium=landing&amp;utm_campaign=neizvestnyy-razrabotchik-mac-vpn&amp;utm_content=footer-link" rel="noopener">Личный кабинет и оплата</a></p>
+      </div>
+      <p class="closing-fine">
+        Karing выпускает сторонняя команда, мы с ней не связаны. Samsung, LG, Яндекс ТВ,
+        Android TV, Google TV, macOS, Happ, v2rayTun, INCY, Hiddify и другие названия
+        принадлежат их владельцам и упомянуты для справки. Сведения о чужих приложениях,
+        телевизорах и приставках — по открытым источникам на сентябрь 2026 года, могли
+        измениться. Сервис предназначен для защиты личных данных и доступа к легальным
+        ресурсам. Цены указаны на 2026 год.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/app.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://jtapes.github.io/vpnekran/neizvestnyy-razrabotchik-mac-vpn.html#article",
+      "headline": "«Неизвестный разработчик» при установке ВПН на Mac: что это и как быть",
+      "description": "macOS не открывает ВПН-клиент и пишет про неустановленного разработчика. Что такое Gatekeeper, как открыть приложение в Sequoia и новее через «Всё равно открыть», чем опасен совет отключить проверку.",
+      "inLanguage": "ru-RU",
+      "datePublished": "2026-09-27",
+      "dateModified": "2026-09-27",
+      "author": {
+        "@type": "Organization",
+        "name": "ВПН Экран",
+        "url": "https://jtapes.github.io/vpnekran/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "ВПН Экран",
+        "url": "https://jtapes.github.io/vpnekran/"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://jtapes.github.io/vpnekran/neizvestnyy-razrabotchik-mac-vpn.html"
+      },
+      "isPartOf": {
+        "@id": "https://jtapes.github.io/vpnekran/#website"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://jtapes.github.io/vpnekran/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Статьи",
+          "item": "https://jtapes.github.io/vpnekran/stati.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Неизвестный разработчик на Mac",
+          "item": "https://jtapes.github.io/vpnekran/neizvestnyy-razrabotchik-mac-vpn.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://jtapes.github.io/vpnekran/neizvestnyy-razrabotchik-mac-vpn.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Кнопки «Всё равно открыть» в настройках нет. Что делать?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Она появляется только после попытки запустить приложение и видна примерно час. Откройте программу двойным щелчком ещё раз, закройте предупреждение кнопкой «Готово» и сразу зайдите в «Системные настройки» → «Конфиденциальность и безопасность», раздел «Безопасность»."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Работает ли в Sequoia старый способ через Control и «Открыть»?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Нет. Начиная с macOS Sequoia обход через контекстное меню убран, приложение без нотаризации открывают только через «Конфиденциальность и безопасность» и кнопку «Всё равно открыть» с вводом пароля администратора."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Не безопаснее ли поставить Karing из App Store, чтобы не было предупреждения?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Для нашей подписки нет: в App Store для Mac лежит старая сборка Karing, она ставится и открывается, но к нашим серверам не подключается. Берите образ по кнопке «macOS» в личном кабинете, это официальный выпуск разработчиков."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Разрешил запуск, приложение открылось, но туннель не поднимается. Почему?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Скорее всего, не выдано разрешение на конфигурацию VPN: если в том окне отказаться, соединения не будет. Нажмите подключение ещё раз и разрешите. Для Karing проверьте также «Локальную сеть» и «Полный доступ к диску» в разделе «Конфиденциальность и безопасность»."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>
