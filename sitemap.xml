@@ -74,7 +74,7 @@
   </url>
   <url>
     <loc>https://jtapes.github.io/vpnekran/stati.html</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -105,6 +105,12 @@
   <url>
     <loc>https://jtapes.github.io/vpnekran/yandex-tv-ili-android-tv.html</loc>
     <lastmod>2026-10-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://jtapes.github.io/vpnekran/v2raytun-na-televizor.html</loc>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

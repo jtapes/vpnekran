@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+
+<title>v2rayTun на телевизор: установка на Android TV и ключ без клавиатуры | ВПН Экран</title>
+<meta name="description" content="Как поставить v2rayTun на телевизор с Android TV или Google TV, как перенести ключ или подписку с телефона без клавиатуры (QR-код, текст по Wi-Fi, пульт) и что делать, если пульт не доходит до кнопки.">
+<meta name="keywords" content="v2raytun на телевизор, v2raytun android tv, v2raytun для тв, как импортировать подписку v2raytun на телевизор, v2raytun как подключить телевизор, впн для андроид тв, впн для телевизора андроид">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://jtapes.github.io/vpnekran/v2raytun-na-televizor.html">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ВПН Экран">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="v2rayTun на телевизор: установка на Android TV и ключ без клавиатуры">
+<meta property="og:description" content="Откуда ставить v2rayTun на телевизор, три способа донести ключ с телефона и ошибки пульта и экрана.">
+<meta property="og:url" content="https://jtapes.github.io/vpnekran/v2raytun-na-televizor.html">
+<meta name="twitter:card" content="summary">
+
+<meta name="theme-color" content="#16100d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232b211b'/%3E%3Crect x='6' y='8' width='20' height='12.5' rx='2' fill='none' stroke='%23f3b664' stroke-width='2'/%3E%3Cpath d='M12 25h8' stroke='%23f3b664' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='14.2' r='2.2' fill='%23ffdcaa'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+<!-- Без скриптов блоки не получат класс .tuned — показываем их сразу: страница
+     обязана читаться и с выключенным JS, и поисковым роботом. -->
+<noscript><style>.tune{opacity:1;transform:none}</style></noscript>
+<!-- Yandex.Metrika counter -->
+<script>
+  (function(m,e,t,r,i,k,a){
+    m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();
+    for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+  })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113078338', 'ym');
+  ym(113078338, 'init', {ssr:true, webvisor:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href*="siberian.uk"]');
+    if (a) ym(113078338, 'reachGoal', 'go_siberian');
+  });
+</script>
+<!-- /Yandex.Metrika counter -->
+</head>
+
+<body>
+<noscript><div><img src="https://mc.yandex.ru/watch/113078338" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+
+<header class="porch">
+  <div class="hold porch-in">
+    <a class="ekr" href="index.html">
+      <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2b211b"/><rect x="6" y="8" width="20" height="12.5" rx="2" stroke="#f3b664" stroke-width="2"/><path d="M12 25h8" stroke="#f3b664" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="14.2" r="2.2" fill="#ffdcaa"/></svg>
+      <span class="ekr-a">ВПН</span>
+      <span class="ekr-b">Экран</span>
+    </a>
+    <nav class="dial" aria-label="Разделы">
+      <a href="android-tv.html">Android TV</a>
+      <a href="yandex-tv.html">Яндекс ТВ</a>
+      <a href="mac.html">Mac</a>
+      <a href="mobilnyy-internet.html">Мобильный интернет</a>
+      <a href="goroda.html">Города</a>
+    </nav>
+    <a class="knob knob-lit knob-sm" href="https://siberian.uk/auth?utm_source=vpnekran&amp;utm_medium=satellite&amp;utm_campaign=v2raytun-na-televizor&amp;utm_content=nav" rel="noopener">Кабинет</a>
+  </div>
+</header>
+
+<main>
+
+<div class="hold">
+  <nav class="bread" aria-label="Навигация">
+    <a href="index.html">Главная</a><i>/</i><a href="stati.html">Статьи</a><i>/</i><span>v2rayTun на телевизор</span>
+  </nav>
+</div>
+
+<section class="story-top">
+  <div class="hold">
+    <span class="label">Android TV · Google TV · пульт</span>
+    <h1>v2rayTun на телевизор: <span>установка на Android TV и ключ без клавиатуры</span></h1>
+    <p class="story-lede">Ключ или ссылку подписки сервис присылает на телефон, а смотреть хочется на большом экране. Приложение на Android TV то же самое, что на телефоне, только вместо пальца у вас пульт со стрелками, а скопировать строку с телефона и вставить на телевизоре так просто не выйдет. Здесь о том, откуда ставить v2rayTun на телевизор, как донести до него ключ и где пульт обычно упирается в интерфейс.</p>
+    <p class="story-date">Опубликовано 20 октября 2026</p>
+  </div>
+</section>
+
+<div class="hold">
+  <article class="story">
+    <h2>Откуда ставить</h2>
+    <p>Сам по себе v2rayTun никуда не подключает. Это клиент на ядре Xray: в него добавляют ключ
+    или подписку от какого-то сервиса, и разработчик прямо пишет, что VPN-услугу не продаёт.
+    Версия для Андроида одна на все устройства, и в её карточке в Google Play среди поддерживаемых
+    устройств указан телевизор (на октябрь 2026).</p>
+    <p>На телевизоре с Android TV или Google TV приложение находят в Google Play самого телевизора,
+    голосом с пульта или поиском по буквам. Есть способ и без набора: откройте карточку v2rayTun
+    в Google Play на телефоне под тем же аккаунтом Google, что на телевизоре. В меню рядом с кнопкой
+    установки можно выбрать другие устройства аккаунта, и приложение встанет на телевизор, когда тот
+    будет в сети. В карточке сверьте разработчика, сейчас это DATABRIDGES TECHNOLOGIES LTD:
+    в магазине хватает приложений с похожим названием и значком.</p>
+    <p>Без Google Play выбор беднее. Официальный сайт v2rayTun для Андроида отправляет в Google Play,
+    отдельного установочного файла там нет. APK из каталогов и с зеркал на GitHub выложили сторонние
+    люди, и проверить, та ли внутри сборка, нечем. А клиент туннеля видит весь трафик телевизора.</p>
+    <p>На Яндекс ТВ Google Play нет, а пустит ли прошивка сторонний файл, зависит от модели.
+    Об этом подробнее в статье <a href="yandex-tv-ili-android-tv.html">«Яндекс ТВ или Android TV»</a>.
+    На Samsung и LG v2rayTun не встанет вовсе: у них Tizen и webOS, а приложение сделано
+    для Андроида. Для таких телевизоров есть один путь, приставка на Android TV во втором входе HDMI,
+    о ней в <a href="android-tv.html#samsung-lg">разделе про Samsung и LG</a>.</p>
+
+    <h2>Как донести ключ с телефона до телевизора</h2>
+    <p>В описании приложения перечислены четыре способа импорта: QR-код, буфер обмена, диплинк
+    и ручной ввод. На телевизоре половина из них работает не так, как на телефоне. Камеры у него нет,
+    общего буфера с телефоном тоже, а диплинк срабатывает при нажатии на ссылку, и нажать её
+    на экране телевизора негде.</p>
+    <figure style="margin:26px 0 24px">
+      <img src="assets/v2raytun-na-televizor-shema.svg" width="380" height="690" loading="lazy" alt="v2rayTun на телевизор: три способа перенести ключ с телефона на Android TV" style="width:min(380px, 100vw - 48px);height:auto;display:block;margin:0 auto;border-radius:12px">
+    </figure>
+
+    <h3>QR-код показывает телевизор</h3>
+    <p>Здесь всё наоборот: код выводит на экран телевизор, а сканирует его телефон, на котором
+    уже стоит v2rayTun с нужным ключом. Импорт на Android TV по QR-коду разработчик называет одной
+    из функций приложения. Пункт ищите в меню добавления конфигурации на телевизоре. Меню
+    от версии к версии переименовывают, поэтому точный путь мы не пишем.</p>
+    <p>В отзывах в Google Play жаловались, что в одной из версий форма на телефоне закрывалась
+    сразу после сканирования и до телевизора ничего не доходило. Разработчик в ответ советовал
+    обновить приложение. Обновите его на обоих устройствах; если код всё равно не принимается,
+    переходите к способам ниже.</p>
+
+    <h3>Текст через телефон</h3>
+    <p>Приложение Google TV на телефоне работает пультом для приставок с Google TV и части Android TV,
+    и у этого пульта есть клавиатура. Поставьте курсор в поле адреса на телевизоре, нажмите значок
+    клавиатуры в приложении и вставьте строку, скопированную на телефоне. Телефон и телевизор должны
+    быть в одной сети Wi-Fi.</p>
+    <p>Другой путь даёт программа для передачи файлов и текста между устройствами, если она стоит
+    и на телефоне, и на телевизоре. Строку отправляют на телевизор, там нажимают «Копировать»,
+    а в v2rayTun выбирают импорт из буфера обмена. Буфер в этом случае свой, телевизорный, и строка
+    лежит в нём, пока вы не скопируете что-нибудь другое.</p>
+
+    <h3>Набор с пульта</h3>
+    <p>Если ничего из этого нет, остаётся экранная клавиатура. Ключ <code>vless://</code>
+    с параметрами тянется на сотню-другую знаков, в нём заглавные буквы, дефисы и знаки вопроса,
+    так что пультом его набирают долго. Ссылка подписки обычно короче, и по ней клиент сам обновляет
+    список серверов. Когда сервис выдаёт и ключ, и подписку, на телевизор берите подписку.</p>
+    <p>Набирайте по четыре-пять знаков и после каждой группы сверяйтесь с телефоном. Чаще всего
+    путают строчную l с единицей и букву O с нулём. Ещё одна ловушка в самом начале строки: часть
+    экранных клавиатур сама делает первую букву заглавной, а с <code>Vless://</code>
+    или <code>Https://</code> импорт обычно не проходит.</p>
+
+    <h2>Где спотыкаются пульт и экран</h2>
+    <div class="sheet">
+      <table>
+        <thead><tr><th>Что видно на экране</th><th>Что сделать</th></tr></thead>
+        <tbody>
+          <tr><td>После установки значка v2rayTun нет на главном экране</td><td>Откройте полный список приложений или «Настройки» → «Приложения». Оттуда значок можно добавить на главный экран.</td></tr>
+          <tr><td>Стрелками не дойти до нужной кнопки</td><td>Нажмите «Назад» и зайдите на экран заново. Если не помогло, подключите USB- или Bluetooth-мышь: Android TV её понимает.</td></tr>
+          <tr><td>Нажали включение, а туннель не поднялся</td><td>В первый раз система спрашивает разрешение на подключение. Если окно закрыли кнопкой «Назад», включите ещё раз и выберите OK.</td></tr>
+          <tr><td>Ключ добавлен, но соединение обрывается сразу</td><td>Проверьте дату и время на телевизоре: при сбитых часах шифрованное соединение не проходит проверку.</td></tr>
+          <tr><td>После перезагрузки туннель выключен или работает другой клиент</td><td>Android держит один туннель на всю систему. Выключите автозапуск во втором приложении.</td></tr>
+          <tr><td>Подписка добавилась, а серверов в ней ноль</td><td>Клиент не узнал формат строк в подписке. Опечатка тут ни при чём, нужен другой клиент.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Бывает, что на телефоне ключ работает, а телевизор сервис не пускает. v2rayTun передаёт серверу
+    подписки модель и идентификатор устройства, и сервисы, которые считают устройства, видят
+    телевизор отдельно от телефона. Сколько устройств разрешено на одном ключе, спросите у того,
+    кто его выдал.</p>
+    <p>Подробнее о том, почему на телевизоре два клиента туннеля мешают друг другу и как по признакам
+    понять, что подписка попала не в тот клиент, написано в статье
+    <a href="storonniy-klient-na-android-tv.html">про сторонний клиент на Android TV</a>.</p>
+
+    <h2>Если ссылка от Siberian VPN</h2>
+    <p>Основная ссылка нашей подписки отдаёт серверы на протоколе naive. Ядро Xray, на котором собран
+    v2rayTun, такого протокола не знает: в Google Play у приложения перечислены VLESS, VMess, Trojan,
+    Shadowsocks и SOCKS. Если добавить нашу основную ссылку в v2rayTun, подписка появится в списке,
+    а серверов в ней не будет.</p>
+    <p>Для запасного клиента INCY в кабинете есть вторая ссылка на отдельные серверы VLESS.
+    В v2rayTun мы её не проверяли и работу там не обещаем, да и сам INCY на телевизоре пока
+    не проверен. На Android TV у нас проверен Karing. Его установочный файл лежит в кабинете на вкладке
+    «ТВ» рядом с короткой ссылкой подписки. В уникальной части ссылки нет заглавных букв и пар вроде
+    нуля и O, так что путать при наборе с пульта в ней нечего. Как поставить файл
+    и какие галочки отметить в Karing, написано <a href="android-tv.html#fayl">на странице про Android TV</a>,
+    про набор ссылки там же, <a href="android-tv.html#pult">во втором шаге</a>.</p>
+    <p>По правилам подписки одновременно работают устройства одного человека, не больше чем из двух
+    сетей. Телевизор на домашнем Wi-Fi и ваш телефон в той же сети считаются одной.</p>
+  </article>
+</div>
+
+<section class="scene tune" id="voprosy">
+  <div class="hold">
+    <div class="scene-cap">
+      <span class="label">Вопросы</span>
+      <h2>О v2rayTun на телевизоре</h2>
+    </div>
+    <div class="qlist">
+      <details open>
+        <summary>Есть ли v2rayTun в Google Play на телевизоре?</summary>
+        <div class="qlist-a">Да, в карточке приложения в Google Play среди поддерживаемых устройств указан телевизор (на октябрь 2026). На Android TV и Google TV его находят поиском в магазине самого телевизора или ставят с телефона под тем же аккаунтом Google. На Яндекс ТВ Google Play нет.</div>
+      </details>
+      <details>
+        <summary>Можно ли поставить v2rayTun на телевизор Samsung или LG?</summary>
+        <div class="qlist-a">Нет. v2rayTun сделан для Андроида, а Samsung работает на Tizen, LG на webOS. Для таких телевизоров остаётся приставка на Android TV во входе HDMI, на неё клиент ставится так же, как на телевизор с Андроидом.</div>
+      </details>
+      <details>
+        <summary>Как импортировать подписку v2rayTun на телевизор без клавиатуры?</summary>
+        <div class="qlist-a">Способов три. Можно показать QR-код на телевизоре и отсканировать его v2rayTun на телефоне. Можно передать строку текстом через приложение-пульт или программу передачи файлов и вставить её из буфера обмена. Или набрать экранной клавиатурой, и тогда лучше ссылку подписки: она короче ключа vless с параметрами.</div>
+      </details>
+      <details>
+        <summary>Почему ключ работает на телефоне, а на телевизоре v2rayTun не подключается?</summary>
+        <div class="qlist-a">Чаще всего виноваты сбитые дата и время на телевизоре, второй клиент туннеля, который перехватил подключение, или лимит устройств у сервиса: v2rayTun передаёт серверу подписки модель и идентификатор устройства, и телевизор считается отдельным. Проверьте часы, выключите второй клиент и узнайте у сервиса, сколько устройств разрешено.</div>
+      </details>
+      <details>
+        <summary>Подойдёт ли v2rayTun для подписки Siberian VPN на телевизоре?</summary>
+        <div class="qlist-a">Основная ссылка работает на протоколе naive, а v2rayTun его не понимает: серверов в подписке будет ноль. Запасную ссылку на VLESS в v2rayTun мы не проверяли и работу не обещаем. На Android TV проверен Karing, его файл и короткая ссылка лежат в личном кабинете.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="scene tune">
+  <div class="hold">
+    <div class="scene-cap">
+      <span class="label">Ещё статьи</span>
+      <h2>Что ещё почитать про экраны и подписку</h2>
+    </div>
+    <ul class="spine">
+      <li><a href="storonniy-klient-na-android-tv.html">Сторонний ВПН-клиент на Android TV: почему наш naive-конфиг в нём не встанет</a></li>
+      <li><a href="yandex-tv-ili-android-tv.html">Яндекс ТВ или Android TV: в чём разница для ВПН</a></li>
+      <li><a href="pristavka-dlya-vpn-samsung-lg.html">Телевизор Samsung или LG: какую приставку взять под ВПН</a></li>
+      <li><a href="pochemu-vpn-ne-rabotaet-v-mobilnoy-seti.html">ВПН работает на Wi-Fi, а на мобильном интернете нет</a></li>
+    </ul>
+    <p class="spine-all"><a href="stati.html">Все статьи на одной странице →</a></p>
+  </div>
+</section>
+
+<section class="scene tune">
+  <div class="hold">
+    <div class="finale">
+      <span class="label">Телевизор</span>
+      <h2>Файл Karing для Android TV и короткая ссылка лежат в кабинете</h2>
+      <p class="gist">Первые три дня без оплаты и без карты. Этого хватит, чтобы поставить Karing на телевизор и посмотреть, как он работает на вашем Wi-Fi.</p>
+      <a class="knob knob-lit knob-xl" href="https://siberian.uk/auth?utm_source=vpnekran&amp;utm_medium=satellite&amp;utm_campaign=v2raytun-na-televizor&amp;utm_content=footer-cta" rel="noopener">Открыть личный кабинет</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="closing">
+  <div class="hold">
+    <nav class="closing-nav" aria-label="Разделы сайта">
+      <a href="index.html">Главная</a>
+      <a href="android-tv.html">Android TV</a>
+      <a href="yandex-tv.html">Яндекс ТВ</a>
+      <a href="mac.html">Mac</a>
+      <a href="mobilnyy-internet.html">Мобильный интернет</a>
+      <a href="goroda.html">Города</a>
+      <a href="stati.html">Статьи</a>
+    </nav>
+    <div class="closing-in">
+      <div>
+        <p><strong>ВПН Экран</strong> рассказывает о подключении телевизоров, приставок и компьютеров к сервису Siberian VPN.</p>
+        <p><a href="https://siberian.uk/auth?utm_source=vpnekran&amp;utm_medium=satellite&amp;utm_campaign=v2raytun-na-televizor&amp;utm_content=footer-link" rel="noopener">Личный кабинет</a></p>
+      </div>
+      <p class="closing-fine">
+        Karing и v2rayTun выпускают сторонние команды, мы с ними не связаны. Samsung, LG, Яндекс ТВ,
+        Android TV, Google TV, Google Play, v2rayTun, INCY и другие названия принадлежат их владельцам
+        и упомянуты для справки. Сведения о чужих приложениях и телевизорах — по открытым источникам
+        на октябрь 2026 года, могли измениться. Сервис предназначен для защиты личных данных и доступа
+        к легальным ресурсам.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/app.js" defer></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://jtapes.github.io/vpnekran/v2raytun-na-televizor.html#article",
+      "headline": "v2rayTun на телевизор: установка на Android TV и ключ без клавиатуры",
+      "description": "Как поставить v2rayTun на телевизор с Android TV или Google TV, как перенести ключ или подписку с телефона без клавиатуры (QR-код, текст по Wi-Fi, пульт) и что делать, если пульт не доходит до кнопки.",
+      "image": "https://jtapes.github.io/vpnekran/assets/v2raytun-na-televizor-shema.svg",
+      "inLanguage": "ru-RU",
+      "datePublished": "2026-10-20",
+      "dateModified": "2026-10-20",
+      "author": {
+        "@type": "Organization",
+        "name": "ВПН Экран",
+        "url": "https://jtapes.github.io/vpnekran/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "ВПН Экран",
+        "url": "https://jtapes.github.io/vpnekran/"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://jtapes.github.io/vpnekran/v2raytun-na-televizor.html"
+      },
+      "isPartOf": {
+        "@id": "https://jtapes.github.io/vpnekran/#website"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://jtapes.github.io/vpnekran/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Статьи",
+          "item": "https://jtapes.github.io/vpnekran/stati.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "v2rayTun на телевизор",
+          "item": "https://jtapes.github.io/vpnekran/v2raytun-na-televizor.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://jtapes.github.io/vpnekran/v2raytun-na-televizor.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Есть ли v2rayTun в Google Play на телевизоре?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да, в карточке приложения в Google Play среди поддерживаемых устройств указан телевизор (на октябрь 2026). На Android TV и Google TV его находят поиском в магазине самого телевизора или ставят с телефона под тем же аккаунтом Google. На Яндекс ТВ Google Play нет."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно ли поставить v2rayTun на телевизор Samsung или LG?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Нет. v2rayTun сделан для Андроида, а Samsung работает на Tizen, LG на webOS. Для таких телевизоров остаётся приставка на Android TV во входе HDMI, на неё клиент ставится так же, как на телевизор с Андроидом."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как импортировать подписку v2rayTun на телевизор без клавиатуры?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Способов три. Можно показать QR-код на телевизоре и отсканировать его v2rayTun на телефоне. Можно передать строку текстом через приложение-пульт или программу передачи файлов и вставить её из буфера обмена. Или набрать экранной клавиатурой, и тогда лучше ссылку подписки: она короче ключа vless с параметрами."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Почему ключ работает на телефоне, а на телевизоре v2rayTun не подключается?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Чаще всего виноваты сбитые дата и время на телевизоре, второй клиент туннеля, который перехватил подключение, или лимит устройств у сервиса: v2rayTun передаёт серверу подписки модель и идентификатор устройства, и телевизор считается отдельным. Проверьте часы, выключите второй клиент и узнайте у сервиса, сколько устройств разрешено."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Подойдёт ли v2rayTun для подписки Siberian VPN на телевизоре?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Основная ссылка работает на протоколе naive, а v2rayTun его не понимает: серверов в подписке будет ноль. Запасную ссылку на VLESS в v2rayTun мы не проверяли и работу не обещаем. На Android TV проверен Karing, его файл и короткая ссылка лежат в личном кабинете."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</body>
+</html>
