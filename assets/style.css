@@ -1,4 +1,4 @@
-/* ВПН Экран — «вечер у экрана».
+/* Экран — «вечер у экрана».
    Тёплый тёмный фон (шоколад/графит), янтарный свет лампы, рамка 16:9.
    Цветовая пара со смыслом: шалфей (--sage) — ставится и работает,
    глина (--clay) — не ставится / не работает, янтарь (--amber) — наш акцент
@@ -28,7 +28,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html { -webkit-text-size-adjust: 100.0%; scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 body {
@@ -56,7 +56,7 @@ h2 { font-size: clamp(25px, 3.2vw, 36px); }
 h3 { font-size: 20px; }
 p { margin: 0 0 14px; }
 
-.hold { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 22px; }
+.hold { width: 100.0%; max-width: 1160px; margin: 0 auto; padding: 0 22px; }
 
 /* ── Шапка ─────────────────────────────────────────────────────────────── */
 .porch {
@@ -76,7 +76,7 @@ p { margin: 0 0 14px; }
 
 @media (max-width: 900px) {
   .porch-in { flex-wrap: wrap; row-gap: 8px; }
-  .dial { order: 3; width: 100%; margin-left: 0; gap: 2px 14px; }
+  .dial { order: 3; width: 100.0%; margin-left: 0; gap: 2px 14px; }
   .porch-in > .knob { margin-left: auto; }
 }
 @media (max-width: 560px) {
@@ -195,7 +195,7 @@ p { margin: 0 0 14px; }
 .press-num { font-family: var(--serif); font-size: 24px; color: var(--amber); font-variant-numeric: tabular-nums; }
 .press-long .press-num { color: var(--clay); }
 .press-bar { grid-column: 1 / -1; height: 6px; background: #120d0a; border-radius: 3px; overflow: hidden; }
-.press-bar i { display: block; height: 100%; background: var(--amber); border-radius: 3px; }
+.press-bar i { display: block; height: 100.0%; background: var(--amber); border-radius: 3px; }
 .press-long .press-bar i { background: var(--clay); }
 .presses-note { font-size: 14px; color: var(--dim); margin: 6px 0 0; }
 
@@ -233,7 +233,7 @@ p { margin: 0 0 14px; }
 }
 
 /* Карточки */
-.cells { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: 16px; }
+.cells { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100.0%, 250px), 1fr)); gap: 16px; }
 .cell {
   display: block; background: var(--cocoa-2); border: 1px solid var(--line); border-radius: var(--r);
   padding: 18px 18px 16px; color: var(--cream); text-decoration: none; min-width: 0;
@@ -263,14 +263,14 @@ a.cell:hover { border-color: var(--amber); color: var(--cream); }
 
 /* Таблица в своей обёртке: скроллится она, а не страница */
 .sheet { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); border-radius: var(--r); background: var(--cocoa-2); }
-.sheet table { width: 100%; border-collapse: collapse; min-width: 560px; font-size: 16px; }
+.sheet table { width: 100.0%; border-collapse: collapse; min-width: 560px; font-size: 16px; }
 .sheet th, .sheet td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--line); }
 .sheet th { font-size: 14px; color: var(--dust); font-weight: 650; background: var(--cocoa-3); }
 .sheet tr:last-child td { border-bottom: 0; }
 .sheet td:first-child { color: var(--cream); font-weight: 600; }
 .sheet td { color: var(--dust); }
 
-/* Тариф */
+/* Блок .tariff */
 .tariff { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 28px; background: var(--cocoa-2); border: 1px solid var(--line); border-radius: 16px; padding: 26px; }
 .tariff > * { min-width: 0; }
 .tariff-num { font-family: var(--serif); font-size: clamp(44px, 7vw, 64px); color: var(--amber); line-height: 1; }
@@ -292,7 +292,7 @@ a.cell:hover { border-color: var(--amber); color: var(--cream); }
 .qlist-a { padding: 0 18px 16px; color: var(--dust); }
 
 /* Города */
-.towns { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 12px; }
+.towns { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100.0%, 230px), 1fr)); gap: 12px; }
 .town { display: block; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--r); background: var(--cocoa-2); text-decoration: none; min-width: 0; }
 .town:hover { border-color: var(--amber); }
 .town b { display: block; color: var(--cream); font-family: var(--serif); font-size: 19px; }
@@ -350,7 +350,7 @@ a.cell:hover { border-color: var(--amber); color: var(--cream); }
 .story .sheet table { min-width: 520px; }
 
 /* Карточки статей: хаб stati.html и блок на главной */
-.lamps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; }
+.lamps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100.0%, 300px), 1fr)); gap: 16px; }
 .lamp {
   display: flex; flex-direction: column; gap: 8px; min-width: 0; padding: 20px 20px 18px;
   background: linear-gradient(180deg, rgba(243, 182, 100, .06), transparent 60%), var(--cocoa-2);
@@ -365,7 +365,7 @@ a.lamp:hover { border-color: var(--amber); color: var(--cream); }
 .lamps-more { margin-top: 18px; }
 
 /* «Читайте по теме» на коммерческих страницах */
-.nook { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 14px; max-width: 900px; }
+.nook { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100.0%, 320px), 1fr)); gap: 14px; max-width: 900px; }
 .nook a {
   display: block; min-width: 0; padding: 14px 18px; border-left: 3px solid var(--amber);
   background: rgba(243, 182, 100, .07); border-radius: 0 var(--r) var(--r) 0;
@@ -376,7 +376,7 @@ a.lamp:hover { border-color: var(--amber); color: var(--cream); }
 .nook span { display: block; color: var(--dust); font-size: 15px; }
 
 /* «Ещё статьи» внизу статьи */
-.spine { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 10px 18px; max-width: 900px; }
+.spine { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100.0%, 280px), 1fr)); gap: 10px 18px; max-width: 900px; }
 .spine li { min-width: 0; padding: 10px 0; border-bottom: 1px dashed var(--line); }
 .spine a { font-family: var(--serif); font-size: 18px; text-decoration: none; }
 .spine a:hover { text-decoration: underline; }
